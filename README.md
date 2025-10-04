@@ -5,7 +5,7 @@ A modular, graphic-based honeypot to capture IP Adresses, usernames, passwords, 
 # Install
 
 **1) Clone repository.**
-`git clone https://github.com/collinsmc23/ssh_honeypy.git`
+`git clone https://github.com/Eshwarsai-07/ssh_honeypy.git`
 
 **2) Permissions.**
 Move into `ssh_honeypy` folder.
@@ -136,9 +136,6 @@ Enable the `honeypy.service` file with `systemctl enable honeypy.service`.
 
 Start the `honepy.service` file with `systemctl start honepy.service`.
 
-# Video Overview
-
-[![YouTube Video](https://img.youtube.com/vi/tyKyLhcKgNo/0.jpg)](https://youtu.be/tyKyLhcKgNo)
 
 # Future Features
 
