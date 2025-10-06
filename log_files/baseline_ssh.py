@@ -67,6 +67,6 @@ def start_server(host='0.0.0.0', port=2223):
         client_handler.start()
 
 if __name__ == '__main__':
-    # Generate an RSA key for the SSH server
+    # Generate an RSA key for the SSH server  
     host_key = paramiko.RSAKey(filename="server.key")
     start_server(port=2222)  # Use a non-privileged port for testing
