@@ -6,7 +6,7 @@ import requests
 # This file parses the various log files. The log files have different "formats" or information provided, so needed to create unique parsers for each.
 # Each of these parsers takes the log file, gathers the specific information provided in the log, then returns the data in columns/rows Pandas dataframe type.
 
-# Parser for the creds file. Returns IP Address, Username, Password.
+# Parser for the creds file. Returns IP Address, Username, Password. 
 def parse_creds_audits_log(creds_audits_log_file):
     data = []
 
