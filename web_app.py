@@ -12,6 +12,7 @@ from dashboard_data_parser import *
 from honeypy import *
 
 # Constants.
+
 # Get base directory of where user is running honeypy from.
 base_dir = base_dir = Path(__file__).parent.parent
 # Source creds_audits.log & cmd_audits.log file path.
