@@ -6,3 +6,4 @@ Docker/
 __pycache__
 requirements1.txt
 server.key.pub
+server.key
