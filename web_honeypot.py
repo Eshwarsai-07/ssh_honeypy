@@ -14,7 +14,7 @@ http_audits_log_local_file_path = base_dir / 'ssh_honeypy' / 'log_files' / 'http
 # HTTP Logger.
 funnel_logger = logging.getLogger('HTTPLogger')
 funnel_logger.setLevel(logging.INFO)
-funnel_handler = RotatingFileHandler('http_audit.log', maxBytes=2000, backupCount=5)
+funnel_handler = RotatingFileHandler('log_files/http_audit.log', maxBytes=2000, backupCount=5)
 funnel_handler.setFormatter(logging_format)
 funnel_logger.addHandler(funnel_handler)
 
@@ -46,7 +46,7 @@ def baseline_web_honeypot(input_username="admin", input_password="deeboodah"):
 
 def run_app(port=5000, input_username="admin", input_password="deeboodah"):
      app = baseline_web_honeypot(input_username, input_password)
-     app.run(debug=True, port=port, host="0.0.0.0")
+     app.run(debug=True, port=port, host="127.0.0.1")
 
      return app
     
