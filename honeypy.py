@@ -1,10 +1,9 @@
 # Import library dependencies.
 import argparse
-# Import project python file dependencies. This is the main file to interface with the honeypot with.
-from ssh_honeypot import *
-from web_honeypot import *
-from dashboard_data_parser import *
-from web_app import *
+"""
+Main entrypoint for Honeypy. We lazily import SSH/HTTP modules to avoid
+requiring optional dependencies (e.g., paramiko) unless that mode is used.
+"""
 
 if __name__ == "__main__":
     # Create parser and add arguments.
@@ -23,6 +22,8 @@ if __name__ == "__main__":
     try:
         if args.ssh:
             print("[-] Running SSH Honeypot...")
+            # Lazy import to avoid requiring paramiko unless --ssh is used
+            from ssh_honeypot import honeypot
             honeypot(args.address, args.port, args.username, args.password, args.tarpit)
 
         elif args.http:
@@ -36,6 +37,8 @@ if __name__ == "__main__":
                 args.password = "deeboodah"
                 print("[-] Running with default password of deeboodah...")
             print(f"Port: {args.port} Username: {args.username} Password: {args.password}")
+            # Lazy import to avoid importing Flask stack unless --http is used
+            from web_honeypot import run_app
             run_app(args.port, args.username, args.password)
         else:
             print("[!] You can only choose SSH (-s) (-ssh) or HTTP (-h) (-http) when running script.")

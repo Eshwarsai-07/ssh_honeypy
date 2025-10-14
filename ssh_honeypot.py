@@ -82,6 +82,16 @@ def emulated_shell(channel, client_ip):
     command = b""
     while True:  
         char = channel.recv(1)
+        # Handle Backspace/Delete keys (common terminals send 0x7f for delete, 0x08 for backspace)
+        if char in (b"\x7f", b"\x08"):
+            if len(command) > 0:
+                # Remove last byte from the buffered command
+                command = command[:-1]
+                # Erase last character on the client terminal
+                channel.send(b"\b \b")
+            # Do not echo the raw control character
+            continue
+        # Echo any other received character back to the client
         channel.send(char)
         if not char:
             channel.close()

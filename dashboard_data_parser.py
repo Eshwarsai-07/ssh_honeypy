@@ -9,14 +9,18 @@ import requests
 # Parser for the creds file. Returns IP Address, Username, Password. 
 def parse_creds_audits_log(creds_audits_log_file):
     data = []
-
-    with open(creds_audits_log_file, 'r') as file:
-        for line in file:
-            parts = line.strip().split(', ')
-            ip_address  = parts[0]
-            username = parts[1]
-            password = parts[2]
-            data.append([ip_address, username, password])
+    try:
+        with open(creds_audits_log_file, 'r') as file:
+            for line in file:
+                parts = line.strip().split(', ')
+                if len(parts) < 3:
+                    continue
+                ip_address  = parts[0]
+                username = parts[1]
+                password = parts[2]
+                data.append([ip_address, username, password])
+    except FileNotFoundError:
+        return pd.DataFrame([], columns=["ip_address", "username", "password"])
 
     df = pd.DataFrame(data, columns=["ip_address", "username", "password"])
     return df
@@ -25,32 +29,31 @@ def parse_creds_audits_log(creds_audits_log_file):
 def parse_cmd_audits_log(cmd_audits_log_file):
 
     data = []
-    
-    with open(cmd_audits_log_file, 'r') as file:
-        for line in file:
-            lines = line.strip().split('\n')
-    
-            # Regular expression to extract IP address and command
-            pattern = re.compile(r"Command b'([^']*)'executed by (\d+\.\d+\.\d+\.\d+)")
-            
-            for line in lines:
-                match = pattern.search(line)
-                if match:
-                    command, ip = match.groups()
-                    data.append({'IP Address': ip, 'Command': command})
-    
-    df = pd.DataFrame(data) 
+    try:
+        with open(cmd_audits_log_file, 'r') as file:
+            for line in file:
+                lines = line.strip().split('\n')
+                # Regular expression to extract IP address and command
+                pattern = re.compile(r"Command b'([^']*)'executed by (\d+\.\d+\.\d+\.\d+)")
+                for line in lines:
+                    match = pattern.search(line)
+                    if match:
+                        command, ip = match.groups()
+                        data.append({'IP Address': ip, 'Command': command})
+    except FileNotFoundError:
+        return pd.DataFrame([], columns=['IP Address', 'Command'])
+
+    df = pd.DataFrame(data, columns=['IP Address', 'Command']) if data else pd.DataFrame([], columns=['IP Address', 'Command'])
 
     return df
 
 # Calculator to generate top 10 values from a dataframe. Supply a column name, counts how often each value occurs, stores in "count" column, then return dataframe with value/count.
 def top_10_calculator(dataframe, column):
+    if dataframe is None or dataframe.empty or column not in dataframe.columns:
+        return pd.DataFrame([], columns=[column, "count"])
 
-    for col in dataframe.columns:
-        if col == column:
-            top_10_df = dataframe[column].value_counts().reset_index().head(10)
-            top_10_df.columns = [column, "count"]
-
+    top_10_df = dataframe[column].value_counts().reset_index().head(10)
+    top_10_df.columns = [column, "count"]
     return top_10_df
 
 # Takes an IP address as string type, uses the Cleantalk API to look up IP Geolocation.

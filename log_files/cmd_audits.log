@@ -1,0 +1,30 @@
+Client 127.0.0.1 attempted connection with username: eshwarsai, password: pass
+Client 127.0.0.1 attempted connection with username: eshwarsai, password: 462005
+Command b'ls'executed by 127.0.0.1
+Command b'cd \x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f'executed by 127.0.0.1
+Command b''executed by 127.0.0.1
+Command b'cd\x7f\x7f\x7f   \t\t\t\x7f\x7f\x7f\x7f\x7f\x7f\x03'executed by 127.0.0.1
+Command b''executed by 127.0.0.1
+Command b'cat jum\t\x7f'executed by 127.0.0.1
+Command b''executed by 127.0.0.1
+Command b'cat jumpbox1.c\t\x7f\x7fonf'executed by 127.0.0.1
+Command b'cat jumpbox1.conf'executed by 127.0.0.1
+Command b'clear'executed by 127.0.0.1
+Command b'clear'executed by 127.0.0.1
+Command b'ls'executed by 127.0.0.1
+Command b'pwd'executed by 127.0.0.1
+Command b'whoami'executed by 127.0.0.1
+Command b'ls'executed by 127.0.0.1
+Command b'cat \x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7f\x7feixt'executed by 127.0.0.1
+Command b'ei\x7f\x7f'executed by 127.0.0.1
+Client 127.0.0.1 attempted connection with username: eshwarsai, password: 
+Client 127.0.0.1 attempted connection with username: eshwarsai, password: 462005
+Command b'ls'executed by 127.0.0.1
+Command b'pwd'executed by 127.0.0.1
+Command b'whoami'executed by 127.0.0.1
+Command b"ls'\x7f\x7f\x7f\x7f\x7f\x7f\x7f"executed by 127.0.0.1
+Command b'ls'executed by 127.0.0.1
+Command b'cat ju\t\x7f\x7f\x7f\x7f\x7f'executed by 127.0.0.1
+Command b''executed by 127.0.0.1
+Command b'cat jumpbox1.co\t\x7f'executed by 127.0.0.1
+Command b''executed by 127.0.0.1
