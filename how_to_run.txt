@@ -1,0 +1,60 @@
+"How to run ssh_honeypot"
+
+Ensure dependencies:
+    git clone https://github.com/Eshwarsai-07/ssh_honeypy
+    cd ssh_honeypy
+    python3 -m venv .venv && source .venv/bin/activate
+    pip install -r requirements.txt
+
+Generate server key if missing (required at static/server.key):
+    ssh-keygen -t rsa -b 2048 -m PEM -N '' -f static/server.key
+
+Start the SSH honeypot (example on port 2223):
+    python3 honeypy.py -s -a 127.0.0.1 -p 2223
+Start the SSH honeypot with more secure option tarpit(example on port 2223):
+    python3 honeypy.py -a 0.0.0.0 -p 22 -s --tarpit
+Optional: enforce a specific username/password:
+    python3 honeypy.py -s -a 127.0.0.1 -p 2223 -u admin -w deeboodah
+
+Press Ctrl+C to stop.
+
+Log in to the emulated shell
+
+From another terminal:
+    ssh -p 2223 127.0.0.1
+
+If you set -u/-w, use those creds; otherwise, any username/password will be accepted.
+
+About commands “not executing”
+This is an emulated shell. It does not run real system commands on your Mac.
+Supported examples:
+pwd, whoami, ls, cat jumpbox1.conf, exit
+Other inputs are echoed back for logging; they won’t execute on the host.
+
+"How to run HTTP honeypot"
+
+Ensure dependencies (if not already done):
+    git clone https://github.com/Eshwarsai-07/ssh_honeypy
+    cd ssh_honeypy
+    python3 -m venv .venv && source .venv/bin/activate
+    pip install -r requirements.txt
+
+Start the HTTP honeypot (example on port 8080):
+    python3 honeypy.py -wh --address 127.0.0.1 --port 8080
+
+Optional: set specific login creds (default is admin / deeboodah if not provided):
+    python3 honeypy.py -wh -a 127.0.0.1 -p 8080 -u admin -w deeboodah
+
+Press Ctrl+C to stop.
+
+Access and “login”:
+    Open:
+        http://127.0.0.1:8080/
+        http://127.0.0.1:8080/wp-admin (admin login page)
+        Use the creds you set with -u/-w; otherwise use:
+        Username: admin
+        Password: deeboodah
+
+Notes
+This is an emulated honeypot; actions don’t affect a real WordPress instance.
+Activity is logged under log_files/ (e.g., http_audit.log).
