@@ -58,3 +58,19 @@ Access and “login”:
 Notes
 This is an emulated honeypot; actions don’t affect a real WordPress instance.
 Activity is logged under log_files/ (e.g., http_audit.log).
+
+
+Run the dashboard to view logs
+Ensure deps (if not already):
+python3 -m venv .venv && source .venv/bin/activate
+Optional (country lookup panel):
+Edit public.env and set COUNTRY=True (default is False; enabling may slow and needs internet).
+Start the dashboard:
+py
+Open in your browser:
+http://127.0.0.1:8050 (served on all interfaces via 0.0.0.0)
+Notes
+The charts/tables are built from:
+log_files/creds_audits.log (IPs, usernames, passwords)
+log_files/cmd_audits.log (commands)
+Data is read when the app starts. To see new entries, restart web_app.py.
