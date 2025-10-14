@@ -9,7 +9,7 @@ from pathlib import Path
 # Constants.
 SSH_BANNER = "SSH-2.0-MySSHServer_1.0"
 
-# Constants.
+# Constants..
 # Get base directory of where user is running honeypy from.
 base_dir = base_dir = Path(__file__).parent.parent
 # Source creds_audits.log & cmd_audits.log file path.
