@@ -14,7 +14,7 @@ http_audits_log_local_file_path = base_dir / 'ssh_honeypy' / 'log_files' / 'http
 # HTTP Logger.
 funnel_logger = logging.getLogger('HTTPLogger')
 funnel_logger.setLevel(logging.INFO)
-funnel_handler = RotatingFileHandler(http_audits_log_local_file_path, maxBytes=2000, backupCount=5)
+funnel_handler = RotatingFileHandler('http_audit.log', maxBytes=2000, backupCount=5)
 funnel_handler.setFormatter(logging_format)
 funnel_logger.addHandler(funnel_handler)
 
